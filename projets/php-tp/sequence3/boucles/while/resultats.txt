@@ -1,0 +1,10 @@
+11/10/2023 16:58:38 - Pseudo : Maxime - Résultats : Excellents ! Vous avez trouvé le nombre en 10 essais.
+11/10/2023 16:58:54 - Pseudo : Maxime - Résultats : Perdu ! Le nombre à deviner était 11.
+11/10/2023 17:42:11 - Pseudo : rgb - Résultats : Perdu ! Le nombre à deviner était 26.
+17/10/2023 08:46:13 - Pseudo : Maxime - Résultats : Excellents ! Vous avez trouvé le nombre en 4 essais.
+17/10/2023 08:49:16 - Pseudo : Andy - Résultats : Perdu ! Le nombre à deviner était 86.
+17/10/2023 08:50:53 - Pseudo : phonphon - Résultats : Excellents ! Vous avez trouvé le nombre en 3 essais.
+18/10/2023 10:37:13 - Pseudo : max - Résultats : Perdu ! Le nombre à deviner était 8.
+18/10/2023 10:38:31 - Pseudo : Maxime - Résultats : Excellents ! Vous avez trouvé le nombre en 8 essais.
+06/11/2023 12:47:03 - Pseudo : maxime - Résultats : Excellents ! Vous avez trouvé le nombre en 4 essais.
+06/11/2023 12:47:56 - Pseudo : maxime - Résultats : Excellents ! Vous avez trouvé le nombre en 8 essais.
