@@ -20,14 +20,19 @@ $livres = [
 // Afficher pour chaque livre son titre, son auteur et son année de parution
 // Format d'affichage : "Titre" écrit par "Auteur" en "Année de parution"
 echo "------------ Liste des livres ------------".PHP_EOL;
-
-
+echo PHP_EOL;
+foreach ($livres as $livre) {
+    [$titre,$auteur,$datePublication]=explode(":",$livre);
+    echo "Le livre $titre écrit par $auteur est apparu en $datePublication.";
+    echo PHP_EOL;
+}
+echo PHP_EOL;
 // Rechercher et afficher tous les livres écrits par un auteur donné
 // L'auteur est saisi par l'utilisateur (respecter la casse)
 // Format d'affichage : "Titre" ("Genre") écrit en "Année de parution"
 // Si aucun livre n'est trouvé, afficher "Aucun livre trouvé pour cet auteur"
 echo "------------ Recherche de livres par auteur ------------".PHP_EOL;
-
+echo PHP_EOL;
 
 // Modifier l'année de parution d'un livre dont l'ISBN est saisi par l'utilisateur
 // L'année de parution est également saisie par l'utilisateur
