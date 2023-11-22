@@ -19,7 +19,9 @@ $livres = [
 
 // Afficher pour chaque livre son titre, son auteur et son année de parution
 // Format d'affichage : "Titre" écrit par "Auteur" en "Année de parution"
+
 echo "------------ Liste des livres ------------".PHP_EOL;
+
 echo PHP_EOL;
 foreach ($livres as $livre) {
     [$titre,$auteur,$datePublication]=explode(":",$livre);
@@ -27,32 +29,45 @@ foreach ($livres as $livre) {
     echo PHP_EOL;
 }
 echo PHP_EOL;
+
 // Rechercher et afficher tous les livres écrits par un auteur donné
 // L'auteur est saisi par l'utilisateur (respecter la casse)
 // Format d'affichage : "Titre" ("Genre") écrit en "Année de parution"
 // Si aucun livre n'est trouvé, afficher "Aucun livre trouvé pour cet auteur"
+
 echo "------------ Recherche de livres par auteur ------------".PHP_EOL;
+
 echo PHP_EOL;
 $auteurUtilisateur=readline("Saisir un auteur : ");
+$livreUtilisateur=[];
 foreach ($livres as $livre) {
     [$titre,$auteur,$datePublication,$genre]=explode(":",$livre);
-    if ($auteurUtilisateur==$auteur) {
-        echo "$titre ($genre) écrit en $datePublication";
-        echo PHP_EOL;
+    if (strtolower($auteurUtilisateur)==strtolower($auteur)) {
+        $livreUtilisateur[]="$titre ($genre) écrit en $datePublication";
     }
+}
 
+if (empty($livreUtilisateur)) {
+    echo "Aucun livre trouvé pour cet auteur";
+} else {
+    foreach ($livreUtilisateur as $phrase) {
+        echo $phrase.PHP_EOL;
+    }
 }
 echo PHP_EOL;
+
 // Modifier l'année de parution d'un livre dont l'ISBN est saisi par l'utilisateur
 // L'année de parution est également saisie par l'utilisateur
 // Si l'ISBN n'est pas trouvé, afficher "ISBN non trouvé"
 // sinon afficher "L'année de parution a été modifiée avec succès et afficher la liste des livres mise à jour"
+
 echo "------------ Modification de l'année de parution ------------".PHP_EOL;
 
 
 // Rechercher et afficher tous les livres publiés entre deux années spécifiques.
 // Les années sont saisies par l'utilisateur (Année de début et Année de fin)
 // Format d'affichage : "Titre" de "Auteur" (Publié en "Année de parution")
+
 echo "------------ Recherche de livres entre deux années ------------".PHP_EOL;
 
 
@@ -60,11 +75,13 @@ echo "------------ Recherche de livres entre deux années ------------".PHP_EOL;
 // La chaine de recherche  est saisie par l'utilisateur
 // La recherche doit être insensible à la casse
 // Format d'affichage : "Titre" de "Auteur" ("Année de parution")
+
 echo "------------ Recherche de livres par mot clé dans le titre ------------".PHP_EOL;
 
 // Rechercher tous les genres proposés et stocker dans un tableau
 // Attention un même genre ne doit être stocké qu'une seule fois
 // Afficher les genres
+
 echo "------------ Recherche des genres ------------".PHP_EOL;
 
 // Afficher le nombre de livres pour un auteur donné
