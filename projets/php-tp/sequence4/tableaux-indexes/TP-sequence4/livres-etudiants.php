@@ -23,7 +23,7 @@ echo "------------ Liste des livres ------------".PHP_EOL;
 echo PHP_EOL;
 foreach ($livres as $livre) {
     [$titre,$auteur,$datePublication]=explode(":",$livre);
-    echo "Le livre $titre écrit par $auteur est apparu en $datePublication.";
+    echo "$titre écrit par $auteur en $datePublication";
     echo PHP_EOL;
 }
 echo PHP_EOL;
@@ -33,7 +33,16 @@ echo PHP_EOL;
 // Si aucun livre n'est trouvé, afficher "Aucun livre trouvé pour cet auteur"
 echo "------------ Recherche de livres par auteur ------------".PHP_EOL;
 echo PHP_EOL;
+$auteurUtilisateur=readline("Saisir un auteur : ");
+foreach ($livres as $livre) {
+    [$titre,$auteur,$datePublication,$genre]=explode(":",$livre);
+    if ($auteurUtilisateur==$auteur) {
+        echo "$titre ($genre) écrit en $datePublication";
+        echo PHP_EOL;
+    }
 
+}
+echo PHP_EOL;
 // Modifier l'année de parution d'un livre dont l'ISBN est saisi par l'utilisateur
 // L'année de parution est également saisie par l'utilisateur
 // Si l'ISBN n'est pas trouvé, afficher "ISBN non trouvé"
