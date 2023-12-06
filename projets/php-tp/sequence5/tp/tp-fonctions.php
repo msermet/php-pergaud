@@ -32,3 +32,4 @@ function genererAcronyme(string $phrase) : string {
     return $acronyme;
 }
 
+function genererNumerosbillets
