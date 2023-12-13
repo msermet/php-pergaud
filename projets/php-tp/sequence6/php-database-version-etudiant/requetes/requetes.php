@@ -61,6 +61,19 @@ function rechercherArticles(array $tableArticle,array $tableCategorie) : array {
  * chaque article
 */
 // PLACER ICI VOTRE FONCTION
+function rechercherArticlesDateCreationSuperieureDate(array $tableArticle,array $tableAuteurs,string $date) : array {
+    $resultats = [];
+    foreach ($tableArticle as $id=>$article) {
+        ["titre"=>$titre,"contenu"=>$contenu,"date_creation"=>$date_creation,"actif"=>$actif,"id_auteur"=>$id_auteur,"id_categorie"=>$id_categorie]=$article;
+        foreach ($tableAuteurs as $idCat=>$nom){
+            if ($id_categorie==$idCat) {
+                ["libelle"=>$libelle]=$nom;
+                $resultats[]=array("titre"=>$titre,"contenu"=>$contenu,"date_creation"=>$date_creation,"id_auteur"=>$id_auteur,"id_categorie"=>$id_categorie,"libelle"=>$libelle);
+            }
+        }
+    }
+    return $resultats;
+}
 
 
 /* Requête R5

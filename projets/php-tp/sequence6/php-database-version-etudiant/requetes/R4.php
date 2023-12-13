@@ -9,4 +9,7 @@ require_once "requetes.php";
  * Test requête R4
 */
 $dateCreation = readline("Saisir une date (dd-mm-yyyy) : ");
+$resultats = rechercherArticlesDateCreationSuperieureDate($tableArticles,$tableAuteurs);
+print_r($resultats);
+
 
