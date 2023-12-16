@@ -28,7 +28,7 @@ function rechercherArticlesActifs(array $tableArticle) : array {
 function rechercherArticleDUneCategorie(array $tableArticle,string $categorieId) : array {
     $resultats = [];
     foreach ($tableArticle as $id=>$article) {
-        ["titre"=>$titre,"contenu"=>$contenu,"date_creation"=>$date_creation,"actif"=>$actif,"id_auteur"=>$id_auteur,"id_categorie"=>$id_categorie]=$article;
+        ["titre"=>$titre,"contenu"=>$contenu,"date_creation"=>$date_creation,"id_auteur"=>$id_auteur,"id_categorie"=>$id_categorie]=$article;
         if ($id_categorie==$categorieId) {
             $resultats[]=array("titre"=>$titre,"contenu"=>$contenu,"date_creation"=>$date_creation,"id_auteur"=>$id_auteur,"id_categorie"=>$id_categorie);
         }
@@ -44,11 +44,11 @@ function rechercherArticleDUneCategorie(array $tableArticle,string $categorieId)
 function rechercherArticles(array $tableArticle,array $tableCategorie) : array {
     $resultats = [];
     foreach ($tableArticle as $id=>$article) {
-        ["titre"=>$titre,"contenu"=>$contenu,"date_creation"=>$date_creation,"actif"=>$actif,"id_auteur"=>$id_auteur,"id_categorie"=>$id_categorie]=$article;
+        ["titre"=>$titre,"contenu"=>$contenu,"date_creation"=>$date_creation,"id_auteur"=>$id_auteur,"id_categorie"=>$id_categorie]=$article;
         foreach ($tableCategorie as $idCat=>$nom){
             if ($id_categorie==$idCat) {
                 ["libelle"=>$libelle]=$nom;
-                $resultats[]=array("titre"=>$titre,"contenu"=>$contenu,"date_creation"=>$date_creation,"id_auteur"=>$id_auteur,"id_categorie"=>$id_categorie,"libelle"=>$libelle);
+                $resultats[]=array("id"=>$id,"titre"=>$titre,"contenu"=>$contenu,"date_creation"=>$date_creation,"id_auteur"=>$id_auteur,"id_categorie"=>$id_categorie,"libelle"=>$libelle);
             }
         }
     }
@@ -61,17 +61,22 @@ function rechercherArticles(array $tableArticle,array $tableCategorie) : array {
  * chaque article
 */
 // PLACER ICI VOTRE FONCTION
-function rechercherArticlesDateCreationSuperieureDate(array $tableArticle,array $tableAuteurs,string $date) : array {
+function rechercherArticlesParDateSuperieure(array $tableArticle, array $tableAuteur, $dateLimite): array {
     $resultats = [];
-    foreach ($tableArticle as $id=>$article) {
-        ["titre"=>$titre,"contenu"=>$contenu,"date_creation"=>$date_creation,"actif"=>$actif,"id_auteur"=>$id_auteur,"id_categorie"=>$id_categorie]=$article;
-        foreach ($tableAuteurs as $idCat=>$nom){
-            if ($id_categorie==$idCat) {
-                ["libelle"=>$libelle]=$nom;
-                $resultats[]=array("titre"=>$titre,"contenu"=>$contenu,"date_creation"=>$date_creation,"id_auteur"=>$id_auteur,"id_categorie"=>$id_categorie,"libelle"=>$libelle);
+    foreach ($tableArticle as $id => $article) {
+        ["date_creation" => $dateCreation, "id_auteur" => $idAuteur] = $article;
+        $dateArticle = DateTime::createFromFormat('d-m-Y', $dateCreation);
+        $dateLimiteObj = DateTime::createFromFormat('d-m-Y', $dateLimite);
+        if ($dateArticle && $dateArticle > $dateLimiteObj) {
+            ["titre" => $titre, "contenu" => $contenu] = $article;
+            $auteur = $tableAuteur[$idAuteur] ?? null;
+            if ($auteur) {
+                ["prenom" => $prenom, "nom" => $nom] = $auteur;
+                $resultats[] = ["id" => $id, "titre" => $titre, "contenu" => $contenu, "date creation" => $dateCreation, "prenom auteur" => $prenom, "nom auteur" => $nom,];
             }
         }
     }
+
     return $resultats;
 }
 
@@ -81,16 +86,58 @@ function rechercherArticlesDateCreationSuperieureDate(array $tableArticle,array 
  * On souhaite récupérer l'id, le titre, la date de création et le libellé de la catégorie de chaque article
 */
 // PLACER ICI VOTRE FONCTION
-
+function rechercherArticlesOrdreAlphabetique(array $tableArticle,array $tableCategorie) : array {
+    $resultats = [];
+    foreach ($tableArticle as $id=>$article) {
+        ["titre"=>$titre,"date_creation"=>$date_creation,"id_categorie"=>$id_categorie]=$article;
+        foreach ($tableCategorie as $idCat=>$nom){
+            if ($id_categorie==$idCat) {
+                ["libelle"=>$libelle]=$nom;
+                $resultats[]=array("id"=>$id,"titre"=>$titre,"date_creation"=>$date_creation,"libelle"=>$libelle);
+            }
+        }
+    }
+    usort($resultats, function ($a, $b) {
+        return strcmp($a['titre'], $b['titre']);
+    });
+    return $resultats;
+}
 
 /* Requête R6
  * Récupérer le nombre d'articles postés par un auteur donné (id_auteur)
 */
 // PLACER ICI VOTRE FONCTION
-
+function rechercherNombreArticlesPostes(array $tableArticle,string $auteurId) : int {
+    $resultats = 0;
+    foreach ($tableArticle as $id=>$article) {
+        ["id_auteur" => $id_auteur] = $article;
+        if ($id_auteur == $auteurId) {
+            $resultats += 1;
+        }
+    }
+    return $resultats;
+}
 
 /* Requête R7
  * Récupérer le nombre d'articles postés par chaque auteur
  * On souhaite récupérer l'id, le prénom, le nom et le nombre d'articles ce chaque auteur
 */
 // PLACER ICI VOTRE FONCTION
+function nombreArticlesParAuteurAvecDetails(array $tableArticle,array $tableAuteur) : array {
+    $nombreArticlesParAuteur = [];
+    foreach ($tableArticle as $id => $article) {
+        ["id_auteur" => $id_auteur] = $article;
+        foreach ($tableAuteur as $id_aut => $auteur) {
+            if ($id_auteur == $id_aut) {
+                ["prenom" => $prenom, "nom" => $nom] = $auteur;
+                if (!isset($nombreArticlesParAuteur[$id_auteur])) {
+                    $nombreArticlesParAuteur[$id_auteur] = ["id_auteur" => $id_auteur, "prenom" => $prenom, "nom" => $nom, "nombre_articles" => 1];
+                } else {
+                    $nombreArticlesParAuteur[$id_auteur]['nombre_articles']++;
+                }
+            }
+        }
+    }
+
+    return $nombreArticlesParAuteur;
+}

@@ -9,4 +9,5 @@ require_once "requetes.php";
  * Test requête R5
 */
 
-
+$resultats = rechercherArticlesOrdreAlphabetique($tableArticles,$tableCategories);
+print_r($resultats);

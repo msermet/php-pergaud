@@ -10,4 +10,5 @@ require_once "requetes.php";
 */
 
 $auteurId = readline("Saisir l'id d'un auteur : ");
-
+$resultats = rechercherNombreArticlesPostes($tableArticles,$auteurId);
+echo "L'auteur avec comme identifiant $auteurId a posté $resultats articles.";
