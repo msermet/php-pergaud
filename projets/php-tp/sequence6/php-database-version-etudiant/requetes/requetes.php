@@ -76,7 +76,6 @@ function rechercherArticlesParDateSuperieure(array $tableArticle, array $tableAu
             }
         }
     }
-
     return $resultats;
 }
 
