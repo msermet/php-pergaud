@@ -1,13 +1,9 @@
 <?php
 
-// Définir les informations de connexion
-const DB_HOST = "localhost:3306";
-const DB_NAME = "db_intro";
-const DB_USER = "root";
-const DB_PASSWORD = "";
-
-// Utiliser PDO pour créer une connexion à la DB (base de données)
-$connexion = new PDO(dsn:"mysql:host=".DB_HOST.";dbname=".DB_NAME,username:DB_USER,password:DB_PASSWORD);
+/**
+ * @var PDO $connexion // ce qui permet juste d'enlever l'erreur sur la variable $connexion. L'éditeur php ne connaît pas $connexion vu qu'elle a été créée dans db-config.php mais le programme fonctionne quand même.
+ */
+require "config/db-config.php";
 
 // 1. Exécution de la requête
 // 1.1 Préparation de la requête
