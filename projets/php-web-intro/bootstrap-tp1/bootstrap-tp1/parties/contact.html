@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Contact</title>
+</head>
+<body>
+<section>
+    <div class="container">
+        <h1 class="text-center">Contactez-nous !</h1>
+        <p class="text-center fs-5 fw-lighter">Vous avez une question? Remplissez le formulaire...</p>
+        <form>
+            <label for="basic-url1" class="form-label">Votre email :</label>
+            <div class="mb-3">
+                <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                          <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+                        </svg></span>
+                    <input type="text" class="form-control" id="basic-url1" aria-describedby="basic-addon3 basic-addon4"  placeholder="ex : pierre@exemple.fr">
+                </div>
+            </div>
+            <label for="basic-url2" class="form-label">Votre nom :</label>
+            <div class="mb-3">
+                <div class="input-group">
+                        <span class="input-group-text" id="basic-addon3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                        </svg></span>
+                    <input type="text" class="form-control" id="basic-url2" aria-describedby="basic-addon3 basic-addon4"  placeholder="ex : Pierre">
+                </div>
+            </div>
+            <label for="disabledSelect" class="form-label">Quel est le thème de votre question ?</label>
+            <div class="input-group mb-3">
+                    <span class="input-group-text" id="addon-wrapping"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots-fill" viewBox="0 0 16 16">
+                      <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                    </svg></span>
+                <select id="disabledSelect" class="form-select">
+                    <option value="1">Contenu de l'abonnement</option>
+                    <option value="2">Prix pour les étudiants</option>
+                    <option value="3">Annuler l'abonnement</option>
+                    <option value="4">Créer une playlist</option>
+                </select>
+            </div>
+            <div class="input-group pt-3">
+                <textarea class="form-control" aria-label="With textarea" placeholder="Votre question..."></textarea>
+            </div>
+            <div class="text-center pt-4">
+                <button type="submit" class="btn btn-secondary">envoyer</button>
+            </div>
+        </form>
+    </div>
+</section>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
